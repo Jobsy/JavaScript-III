@@ -26,7 +26,7 @@
 // code example for Window Binding
 
 function sayName(name) {
-    console.log(this);
+    // console.log(this);
     return name;
   }
   sayName("D'Artagnan");
@@ -40,8 +40,8 @@ function sayName(name) {
 const myObj = {
     greeting: 'Hello',
     sayHello: function(name) {
-      console.log(`${this.greeting} my name is ${name}`);
-      console.log(this);
+    //   console.log(`${this.greeting} my name is ${name}`);
+    //   console.log(this);
     }
   };
   myObj.sayHello('Ryan');
@@ -56,8 +56,8 @@ function CordialPerson(greeter) {
     this.greeting = 'Hello ';
     this.greeter = greeter;
     this.speak = function() {
-      console.log(this.greeting + this.greeter);
-      console.log(this);
+    //   console.log(this.greeting + this.greeter);
+    //   console.log(this);
     };
   }
   

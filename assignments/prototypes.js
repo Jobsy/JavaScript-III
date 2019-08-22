@@ -47,6 +47,7 @@
   - When pooping, the stomach should empty.
 */
 
+
 function Person(attr) {
 
   this.name = attr.name;
@@ -76,6 +77,9 @@ function Person(attr) {
 }
 // const jay = new Person({name:"jj", age:23});
 
+
+
+
 /*
   TASK 2
 
@@ -87,6 +91,7 @@ function Person(attr) {
   - Give cars the ability to be repaired.
   - A repaired car can be driven again.
 */
+
 
 function Car(attr) {
 
@@ -115,6 +120,8 @@ Car.prototype.repair = function repairCar() {
 // const bmw = new Car({model:"X6", make:"BMW" });
 
 
+
+
 /*
   TASK 3
 
@@ -139,8 +146,10 @@ Baby.prototype.playPlay = function playing() {
 Baby.prototype.cryCry = function crying() {
   return this.play = "Baby JJ is not cute when crying"
 };
+// const babyJay = new Baby({ name: "baby jj", age: "8 months", play: "I want to play!", cry: "Weeemmmm weeemmmmm" });
 
-const babyJay = new Baby({ name: "baby jj", age: "8 months", play: "I want to play!", cry: "Weeemmmm weeemmmmm" });
+
+
 
 /*
   TASK 4
@@ -182,9 +191,10 @@ const jj = new Department({
   'gender': 'male',
   'pass': 'yes I passed it!'
 });
+// jj.intro();
+// jj.celebrate();
 
-jj.intro();
-jj.celebrate();
+
 
 
 /*
@@ -206,12 +216,37 @@ jj.celebrate();
   * destroy() // prototype method that returns: `${this.name} was removed from the game.`
 */
 
+function GameObject(gameAttr) {
+  this.createdAt = gameAttr.createdAt;
+  this.name = gameAttr.name
+  this.dimensions = gameAttr.dimensions
+}
+
+GameObject.prototype.destroy = function() {
+  return `${this.name} was removed from the game.`;
+}
+// const jjj = new GameObject({createdAt: "eeee", name: "kkkk", dimensions: 833});
+
+
 /*
   === CharacterStats ===
   * healthPoints
   * takeDamage() // prototype method -> returns the string '<object name> took damage.'
   * should inherit destroy() from GameObject's prototype
 */
+
+function CharacterStats(charAttr) {
+  GameObject.call(this, charAttr);
+  this.healthPoints = charAttr.healthPoints;
+}
+
+CharacterStats.prototype = Object.create(GameObject.prototype);
+
+CharacterStats.prototype.takeDamage = function() {
+  return `${this.name} took damage`;
+}
+// const jj = new CharacterStats({createdAt: "rrr", name: "wfvvvev", dimensions: 33, healthPoints: 55});
+
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
@@ -223,6 +258,22 @@ jj.celebrate();
   * should inherit takeDamage() from CharacterStats
 */
 
+function Humanoid(hAttr) {
+  CharacterStats.call(this, hAttr);
+  this.name = hAttr.name;
+  this.team = hAttr.team;
+  this.weapons = hAttr.weapons;
+  this.language = hAttr.language;
+}
+
+Humanoid.prototype = Object.create(CharacterStats.prototype);
+
+Humanoid.prototype.greet = function() {
+  return `${this.name} offers a greeting in ${this.language}`;
+}
+
+
+
 /*
   * Inheritance chain: GameObject -> CharacterStats -> Humanoid
   * Instances of Humanoid should have all of the same properties as CharacterStats and GameObject.
@@ -231,7 +282,7 @@ jj.celebrate();
 
 // Test you work by un-commenting these 3 objects and the list of console logs below:
 
-/*
+
   const mage = new Humanoid({
     createdAt: new Date(),
     dimensions: {
@@ -289,4 +340,4 @@ jj.celebrate();
   console.log(archer.greet()); // Lilith offers a greeting in Elvish.
   console.log(mage.takeDamage()); // Bruce took damage.
   console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
-*/
+
