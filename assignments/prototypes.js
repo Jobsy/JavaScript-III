@@ -88,7 +88,31 @@ function Person(attr) {
   - A repaired car can be driven again.
 */
 
+function Car(attr) {
 
+  this.model = attr.model,
+    this.make = attr.make,
+    this.odometer = 0    
+}
+
+Car.prototype.drive = function driveCar() {
+  this.odometer += 20;
+};
+
+Car.prototype.crash = function crashCar() {
+  let crashed = true;
+  if (crashed) {
+    return `I crashed at ${this.odometer} miles!`
+  }
+};
+
+Car.prototype.repair = function repairCar() {
+  let repaired = true;
+  if (repaired) {
+    return `I just repaired my crashed car, now I can drive again!`
+  }
+};
+// const bmw = new Car({model:"X6", make:"BMW" });
 
 
 /*
