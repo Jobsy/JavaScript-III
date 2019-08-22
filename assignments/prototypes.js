@@ -41,7 +41,7 @@
 
   - Build a Person Constructor that takes name and age.
   - Give persons the ability to greet by returning a string stating name and age.
-  - Give persons the ability to eat edibles.
+  - Give persons the ability to intro edibles.
   - When eating an edible, it should be pushed into a "stomach" property which is an array.
   - Give persons the ability to poop.
   - When pooping, the stomach should empty.
@@ -57,7 +57,7 @@ function Person(attr) {
     return `My name is ${this.name}, and I'm ${this.age} years old`;
   };
 
-  this.eat = function eatEdibles() {
+  this.intro = function eatEdibles() {
     let edible = true;
     let edibles = ["apples", "vegetables", "banana"];
     if (edible) {
@@ -148,8 +148,44 @@ const babyJay = new Baby({ name: "baby jj", age: "8 months", play: "I want to pl
   Use your imagination and come up with constructors that allow to build objects
   With amazing and original capabilities. Build 3 small ones, or a very
   complicated one with lots of state. Surprise us!
-
 */
+
+function Student(attributes) {
+  this.course = attributes.course;
+  this.weight = attributes.weight;
+  this.height = attributes.height;
+  this.gender = attributes.gender;
+}
+
+Student.prototype.intro = function() {
+  console.log(`Welcome to Lambda ${this.course}`);
+}
+
+function Department(courseAttributes) {
+  
+  Student.call(this, courseAttributes);
+  this.name = courseAttributes.name;
+  this.pass = courseAttributes.pass;
+}
+
+Department.prototype = Object.create(Student.prototype);
+
+Department.prototype.celebrate = function() {
+  console.log(`${this.name}, ${this.pass}`);
+}
+
+const jj = new Department({
+  'name': 'JS III',
+  'course': "webeu3",
+  'weight': 40,
+  'height': 12,
+  'gender': 'male',
+  'pass': 'yes I passed it!'
+});
+
+jj.intro();
+jj.celebrate();
+
 
 /*
 
