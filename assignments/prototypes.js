@@ -49,30 +49,30 @@
 
 function Person(attr) {
 
-  this.name = attr.name,
-    this.age = attr.age,
-    this.stomach = [],
+  this.name = attr.name;
+  this.age = attr.age;
+  this.stomach = [];
 
-    this.great = function greater() {
-      return `My name is ${this.name}, and I'm ${this.age} years old`;
-    },
+  this.great = function greater() {
+    return `My name is ${this.name}, and I'm ${this.age} years old`;
+  };
 
-    this.eat = function eatEdibles() {
-      let edible = true;
-      let edibles = ["apples", "vegetables", "banana"]
-      if (edible) {
-        this.stomach.push(edibles);
-      }
-      return this.stomach;
-    },
-
-    this.poop = function poopPoop() {
-      let pooping = true;
-      if (pooping) {
-        this.stomach.length = 0
-      }
-      return this.stomach;
+  this.eat = function eatEdibles() {
+    let edible = true;
+    let edibles = ["apples", "vegetables", "banana"];
+    if (edible) {
+      this.stomach.push(edibles);
     }
+    return this.stomach;
+  };
+
+  this.poop = function poopPoop() {
+    let pooping = true;
+    if (pooping) {
+      this.stomach.length = 0;
+    }
+    return this.stomach;
+  };
 }
 // const jay = new Person({name:"jj", age:23});
 
@@ -90,9 +90,9 @@ function Person(attr) {
 
 function Car(attr) {
 
-  this.model = attr.model,
-    this.make = attr.make,
-    this.odometer = 0    
+  this.model = attr.model;
+  this.make = attr.make;
+  this.odometer = 0;
 }
 
 Car.prototype.drive = function driveCar() {
@@ -103,14 +103,14 @@ Car.prototype.crash = function crashCar() {
   let crashed = true;
   if (crashed) {
     return `I crashed at ${this.odometer} miles!`
-  }
+  };
 };
 
 Car.prototype.repair = function repairCar() {
   let repaired = true;
   if (repaired) {
     return `I just repaired my crashed car, now I can drive again!`
-  }
+  };
 };
 // const bmw = new Car({model:"X6", make:"BMW" });
 
@@ -124,7 +124,23 @@ Car.prototype.repair = function repairCar() {
   - By playing, a string is returned with some text of your choosing.
 */
 
+function Baby(babyAttr) {
+  Person.call(this, babyAttr);
+  this.play = babyAttr.play;
+  this.cry = babyAttr.cry;
+}
 
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.playPlay = function playing() {
+  return this.play = "Baby JJ is so cute, and such a fun baby to play with"
+};
+
+Baby.prototype.cryCry = function crying() {
+  return this.play = "Baby JJ is not cute when crying"
+};
+
+const babyJay = new Baby({ name: "baby jj", age: "8 months", play: "I want to play!", cry: "Weeemmmm weeemmmmm" });
 
 /*
   TASK 4
