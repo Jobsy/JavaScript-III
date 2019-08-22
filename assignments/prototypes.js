@@ -45,7 +45,38 @@
   - When eating an edible, it should be pushed into a "stomach" property which is an array.
   - Give persons the ability to poop.
   - When pooping, the stomach should empty.
+*/
 
+function Person(attr) {
+
+  this.name = attr.name,
+    this.age = attr.age,
+    this.stomach = [],
+
+    this.great = function greater() {
+      return `My name is ${this.name}, and I'm ${this.age} years old`;
+    },
+
+    this.eat = function eatEdibles() {
+      let edible = true;
+      let edibles = ["apples", "vegetables", "banana"]
+      if (edible) {
+        this.stomach.push(edibles);
+      }
+      return this.stomach;
+    },
+
+    this.poop = function poopPoop() {
+      let pooping = true;
+      if (pooping) {
+        this.stomach.length = 0
+      }
+      return this.stomach;
+    }
+}
+// const jay = new Person({name:"jj", age:23});
+
+/*
   TASK 2
 
   - Build a Car constructor that takes model name and make.
@@ -55,14 +86,23 @@
   - A crashed car can't be driven any more. Attempts return a string "I crashed at x miles!", x being the miles in the odometer.
   - Give cars the ability to be repaired.
   - A repaired car can be driven again.
+*/
 
+
+
+
+/*
   TASK 3
 
   - Build a Baby constructor that subclasses the Person built earlier.
   - Babies of course inherit the ability to greet, which can be strange.
   - Babies should have the ability to play, which persons don't.
   - By playing, a string is returned with some text of your choosing.
+*/
 
+
+
+/*
   TASK 4
 
   Use your imagination and come up with constructors that allow to build objects
