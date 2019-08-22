@@ -41,11 +41,42 @@
 
   - Build a Person Constructor that takes name and age.
   - Give persons the ability to greet by returning a string stating name and age.
-  - Give persons the ability to eat edibles.
+  - Give persons the ability to intro edibles.
   - When eating an edible, it should be pushed into a "stomach" property which is an array.
   - Give persons the ability to poop.
   - When pooping, the stomach should empty.
+*/
 
+function Person(attr) {
+
+  this.name = attr.name;
+  this.age = attr.age;
+  this.stomach = [];
+
+  this.great = function greater() {
+    return `My name is ${this.name}, and I'm ${this.age} years old`;
+  };
+
+  this.intro = function eatEdibles() {
+    let edible = true;
+    let edibles = ["apples", "vegetables", "banana"];
+    if (edible) {
+      this.stomach.push(edibles);
+    }
+    return this.stomach;
+  };
+
+  this.poop = function poopPoop() {
+    let pooping = true;
+    if (pooping) {
+      this.stomach.length = 0;
+    }
+    return this.stomach;
+  };
+}
+// const jay = new Person({name:"jj", age:23});
+
+/*
   TASK 2
 
   - Build a Car constructor that takes model name and make.
@@ -55,21 +86,106 @@
   - A crashed car can't be driven any more. Attempts return a string "I crashed at x miles!", x being the miles in the odometer.
   - Give cars the ability to be repaired.
   - A repaired car can be driven again.
+*/
 
+function Car(attr) {
+
+  this.model = attr.model;
+  this.make = attr.make;
+  this.odometer = 0;
+}
+
+Car.prototype.drive = function driveCar() {
+  this.odometer += 20;
+};
+
+Car.prototype.crash = function crashCar() {
+  let crashed = true;
+  if (crashed) {
+    return `I crashed at ${this.odometer} miles!`
+  };
+};
+
+Car.prototype.repair = function repairCar() {
+  let repaired = true;
+  if (repaired) {
+    return `I just repaired my crashed car, now I can drive again!`
+  };
+};
+// const bmw = new Car({model:"X6", make:"BMW" });
+
+
+/*
   TASK 3
 
   - Build a Baby constructor that subclasses the Person built earlier.
   - Babies of course inherit the ability to greet, which can be strange.
   - Babies should have the ability to play, which persons don't.
   - By playing, a string is returned with some text of your choosing.
+*/
 
+function Baby(babyAttr) {
+  Person.call(this, babyAttr);
+  this.play = babyAttr.play;
+  this.cry = babyAttr.cry;
+}
+
+Baby.prototype = Object.create(Person.prototype);
+
+Baby.prototype.playPlay = function playing() {
+  return this.play = "Baby JJ is so cute, and such a fun baby to play with"
+};
+
+Baby.prototype.cryCry = function crying() {
+  return this.play = "Baby JJ is not cute when crying"
+};
+
+const babyJay = new Baby({ name: "baby jj", age: "8 months", play: "I want to play!", cry: "Weeemmmm weeemmmmm" });
+
+/*
   TASK 4
 
   Use your imagination and come up with constructors that allow to build objects
   With amazing and original capabilities. Build 3 small ones, or a very
   complicated one with lots of state. Surprise us!
-
 */
+
+function Student(attributes) {
+  this.course = attributes.course;
+  this.weight = attributes.weight;
+  this.height = attributes.height;
+  this.gender = attributes.gender;
+}
+
+Student.prototype.intro = function() {
+  console.log(`Welcome to Lambda ${this.course}`);
+}
+
+function Department(courseAttributes) {
+  
+  Student.call(this, courseAttributes);
+  this.name = courseAttributes.name;
+  this.pass = courseAttributes.pass;
+}
+
+Department.prototype = Object.create(Student.prototype);
+
+Department.prototype.celebrate = function() {
+  console.log(`${this.name}, ${this.pass}`);
+}
+
+const jj = new Department({
+  'name': 'JS III',
+  'course': "webeu3",
+  'weight': 40,
+  'height': 12,
+  'gender': 'male',
+  'pass': 'yes I passed it!'
+});
+
+jj.intro();
+jj.celebrate();
+
 
 /*
 
